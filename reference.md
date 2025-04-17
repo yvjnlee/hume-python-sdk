@@ -68,7 +68,11 @@ client.tts.synthesize_json(
 <dl>
 <dd>
 
-**utterances:** `typing.Sequence[PostedUtterance]` — Utterances to be converted to speech output.
+**utterances:** `typing.Sequence[PostedUtterance]` 
+
+A list of **Utterances** to be converted to speech output.
+
+An **Utterance** is a unit of  input for [Octave](/docs/text-to-speech-tts/overview), and includes input `text`, an  optional `description` to serve as the prompt for how the speech should be delivered, an optional `voice` specification, and additional controls to guide delivery for `speed` and `trailing_silence`.
     
 </dd>
 </dl>
@@ -109,6 +113,19 @@ Controls how audio output is segmented in the response.
 - When **disabled**  (`false`), the response maintains a strict one-to-one mapping between input utterances and output snippets. 
 
 This setting affects how the `snippets` array is structured in the response, which may be important  for applications that need to track the relationship between input text and generated audio segments. When  setting to `false`, avoid including utterances with long `text`, as this can result in distorted output.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**instant_mode:** `typing.Optional[bool]` 
+
+Enables ultra-low latency streaming, significantly reducing the time until the first audio chunk is received. Recommended for real-time applications requiring immediate audio playback. For further details, see our documentation on [instant mode](/docs/text-to-speech-tts/overview#ultra-low-latency-streaming-instant-mode). 
+- Dynamic voice generation is not supported with this mode; a predefined  [voice](/reference/text-to-speech-tts/synthesize-json-streaming#request.body.utterances.voice)  must be specified in your request.
+- This mode is only supported for streaming endpoints (e.g.,  [/v0/tts/stream/json](/reference/text-to-speech-tts/synthesize-json-streaming), [/v0/tts/stream/file](/reference/text-to-speech-tts/synthesize-file-streaming)).
+- With `instant_mode` enabled, **requests incur a 10% higher cost** due to increased compute and resource requirements.
     
 </dd>
 </dl>
@@ -191,7 +208,11 @@ client.tts.synthesize_file(
 <dl>
 <dd>
 
-**utterances:** `typing.Sequence[PostedUtterance]` — Utterances to be converted to speech output.
+**utterances:** `typing.Sequence[PostedUtterance]` 
+
+A list of **Utterances** to be converted to speech output.
+
+An **Utterance** is a unit of  input for [Octave](/docs/text-to-speech-tts/overview), and includes input `text`, an  optional `description` to serve as the prompt for how the speech should be delivered, an optional `voice` specification, and additional controls to guide delivery for `speed` and `trailing_silence`.
     
 </dd>
 </dl>
@@ -232,6 +253,19 @@ Controls how audio output is segmented in the response.
 - When **disabled**  (`false`), the response maintains a strict one-to-one mapping between input utterances and output snippets. 
 
 This setting affects how the `snippets` array is structured in the response, which may be important  for applications that need to track the relationship between input text and generated audio segments. When  setting to `false`, avoid including utterances with long `text`, as this can result in distorted output.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**instant_mode:** `typing.Optional[bool]` 
+
+Enables ultra-low latency streaming, significantly reducing the time until the first audio chunk is received. Recommended for real-time applications requiring immediate audio playback. For further details, see our documentation on [instant mode](/docs/text-to-speech-tts/overview#ultra-low-latency-streaming-instant-mode). 
+- Dynamic voice generation is not supported with this mode; a predefined  [voice](/reference/text-to-speech-tts/synthesize-json-streaming#request.body.utterances.voice)  must be specified in your request.
+- This mode is only supported for streaming endpoints (e.g.,  [/v0/tts/stream/json](/reference/text-to-speech-tts/synthesize-json-streaming), [/v0/tts/stream/file](/reference/text-to-speech-tts/synthesize-file-streaming)).
+- With `instant_mode` enabled, **requests incur a 10% higher cost** due to increased compute and resource requirements.
     
 </dd>
 </dl>
@@ -312,7 +346,11 @@ client.tts.synthesize_file_streaming(
 <dl>
 <dd>
 
-**utterances:** `typing.Sequence[PostedUtterance]` — Utterances to be converted to speech output.
+**utterances:** `typing.Sequence[PostedUtterance]` 
+
+A list of **Utterances** to be converted to speech output.
+
+An **Utterance** is a unit of  input for [Octave](/docs/text-to-speech-tts/overview), and includes input `text`, an  optional `description` to serve as the prompt for how the speech should be delivered, an optional `voice` specification, and additional controls to guide delivery for `speed` and `trailing_silence`.
     
 </dd>
 </dl>
@@ -353,6 +391,19 @@ Controls how audio output is segmented in the response.
 - When **disabled**  (`false`), the response maintains a strict one-to-one mapping between input utterances and output snippets. 
 
 This setting affects how the `snippets` array is structured in the response, which may be important  for applications that need to track the relationship between input text and generated audio segments. When  setting to `false`, avoid including utterances with long `text`, as this can result in distorted output.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**instant_mode:** `typing.Optional[bool]` 
+
+Enables ultra-low latency streaming, significantly reducing the time until the first audio chunk is received. Recommended for real-time applications requiring immediate audio playback. For further details, see our documentation on [instant mode](/docs/text-to-speech-tts/overview#ultra-low-latency-streaming-instant-mode). 
+- Dynamic voice generation is not supported with this mode; a predefined  [voice](/reference/text-to-speech-tts/synthesize-json-streaming#request.body.utterances.voice)  must be specified in your request.
+- This mode is only supported for streaming endpoints (e.g.,  [/v0/tts/stream/json](/reference/text-to-speech-tts/synthesize-json-streaming), [/v0/tts/stream/file](/reference/text-to-speech-tts/synthesize-file-streaming)).
+- With `instant_mode` enabled, **requests incur a 10% higher cost** due to increased compute and resource requirements.
     
 </dd>
 </dl>
@@ -441,7 +492,11 @@ for chunk in response:
 <dl>
 <dd>
 
-**utterances:** `typing.Sequence[PostedUtterance]` — Utterances to be converted to speech output.
+**utterances:** `typing.Sequence[PostedUtterance]` 
+
+A list of **Utterances** to be converted to speech output.
+
+An **Utterance** is a unit of  input for [Octave](/docs/text-to-speech-tts/overview), and includes input `text`, an  optional `description` to serve as the prompt for how the speech should be delivered, an optional `voice` specification, and additional controls to guide delivery for `speed` and `trailing_silence`.
     
 </dd>
 </dl>
@@ -489,6 +544,19 @@ This setting affects how the `snippets` array is structured in the response, whi
 <dl>
 <dd>
 
+**instant_mode:** `typing.Optional[bool]` 
+
+Enables ultra-low latency streaming, significantly reducing the time until the first audio chunk is received. Recommended for real-time applications requiring immediate audio playback. For further details, see our documentation on [instant mode](/docs/text-to-speech-tts/overview#ultra-low-latency-streaming-instant-mode). 
+- Dynamic voice generation is not supported with this mode; a predefined  [voice](/reference/text-to-speech-tts/synthesize-json-streaming#request.body.utterances.voice)  must be specified in your request.
+- This mode is only supported for streaming endpoints (e.g.,  [/v0/tts/stream/json](/reference/text-to-speech-tts/synthesize-json-streaming), [/v0/tts/stream/file](/reference/text-to-speech-tts/synthesize-file-streaming)).
+- With `instant_mode` enabled, **requests incur a 10% higher cost** due to increased compute and resource requirements.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
     
 </dd>
@@ -502,6 +570,113 @@ This setting affects how the `snippets` array is structured in the response, whi
 </details>
 
 ## Tts Voices
+<details><summary><code>client.tts.voices.<a href="src/hume/tts/voices/client.py">list</a>(...)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists voices in your **Voice Library**. Set provider to `HUME_AI` to list Hume's preset voices, or to `CUSTOM_VOICE` to a custom voice created in your account.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from hume import HumeClient
+
+client = HumeClient(
+    api_key="YOUR_API_KEY",
+)
+response = client.tts.voices.list(
+    provider="CUSTOM_VOICE",
+)
+for item in response:
+    yield item
+# alternatively, you can paginate page-by-page
+for page in response.iter_pages():
+    yield page
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**provider:** `VoiceProvider` — Specifies whether to return custom voices created in your account or shared voices provided by Hume
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_number:** `typing.Optional[int]` 
+
+Specifies the page number to retrieve, enabling pagination.
+
+This parameter uses zero-based indexing. For example, setting `page_number` to 0 retrieves the first page of results (items 0-9 if `page_size` is 10), setting `page_number` to 1 retrieves the second page (items 10-19), and so on. Defaults to 0, which retrieves the first page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `typing.Optional[int]` 
+
+Specifies the maximum number of results to include per page, enabling pagination. The value must be between 1 and 100, inclusive.
+
+For example, if `page_size` is set to 10, each page will include up to 10 items. Defaults to 10.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ascending_order:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.tts.voices.<a href="src/hume/tts/voices/client.py">create</a>(...)</code></summary>
 <dl>
 <dd>
@@ -581,8 +756,7 @@ client.tts.voices.create(
 </dl>
 </details>
 
-## ExpressionMeasurement Batch
-<details><summary><code>client.expression_measurement.batch.<a href="src/hume/expression_measurement/batch/client.py">list_jobs</a>(...)</code></summary>
+<details><summary><code>client.tts.voices.<a href="src/hume/tts/voices/client.py">delete</a>(...)</code></summary>
 <dl>
 <dd>
 
@@ -594,7 +768,7 @@ client.tts.voices.create(
 <dl>
 <dd>
 
-Sort and filter jobs.
+Removes a custom voice from your **Voice Library**.
 </dd>
 </dl>
 </dd>
@@ -614,145 +788,8 @@ from hume import HumeClient
 client = HumeClient(
     api_key="YOUR_API_KEY",
 )
-client.expression_measurement.batch.list_jobs()
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**limit:** `typing.Optional[int]` — The maximum number of jobs to include in the response.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**status:** `typing.Optional[typing.Union[Status, typing.Sequence[Status]]]` 
-
-Include only jobs of this status in the response. There are four possible statuses:
-
-- `QUEUED`: The job has been received and is waiting to be processed.
-
-- `IN_PROGRESS`: The job is currently being processed. 
-
-- `COMPLETED`: The job has finished processing.
-
-- `FAILED`: The job encountered an error and could not be completed successfully.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**when:** `typing.Optional[When]` — Specify whether to include jobs created before or after a given `timestamp_ms`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**timestamp_ms:** `typing.Optional[int]` 
-
-Provide a timestamp in milliseconds to filter jobs.
-
- When combined with the `when` parameter, you can filter jobs before or after the given timestamp. Defaults to the current Unix timestamp if one is not provided.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sort_by:** `typing.Optional[SortBy]` 
-
-Specify which timestamp to sort the jobs by.
-
-- `created`: Sort jobs by the time of creation, indicated by `created_timestamp_ms`.
-
-- `started`: Sort jobs by the time processing started, indicated by `started_timestamp_ms`.
-
-- `ended`: Sort jobs by the time processing ended, indicated by `ended_timestamp_ms`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**direction:** `typing.Optional[Direction]` 
-
-Specify the order in which to sort the jobs. Defaults to descending order.
-
-- `asc`: Sort in ascending order (chronological, with the oldest records first).
-
-- `desc`: Sort in descending order (reverse-chronological, with the newest records first).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.expression_measurement.batch.<a href="src/hume/expression_measurement/batch/client.py">start_inference_job</a>(...)</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Start a new measurement inference job.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```python
-from hume import HumeClient
-
-client = HumeClient(
-    api_key="YOUR_API_KEY",
-)
-client.expression_measurement.batch.start_inference_job(
-    urls=["https://hume-tutorials.s3.amazonaws.com/faces.zip"],
-    notify=True,
+client.tts.voices.delete(
+    name="David Hume",
 )
 
 ```
@@ -769,273 +806,7 @@ client.expression_measurement.batch.start_inference_job(
 <dl>
 <dd>
 
-**models:** `typing.Optional[Models]` 
-
-Specify the models to use for inference.
-
-If this field is not explicitly set, then all models will run by default.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**transcription:** `typing.Optional[Transcription]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**urls:** `typing.Optional[typing.Sequence[str]]` 
-
-URLs to the media files to be processed. Each must be a valid public URL to a media file (see recommended input filetypes) or an archive (`.zip`, `.tar.gz`, `.tar.bz2`, `.tar.xz`) of media files.
-
-If you wish to supply more than 100 URLs, consider providing them as an archive (`.zip`, `.tar.gz`, `.tar.bz2`, `.tar.xz`).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**text:** `typing.Optional[typing.Sequence[str]]` — Text supplied directly to our Emotional Language and NER models for analysis.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**callback_url:** `typing.Optional[str]` — If provided, a `POST` request will be made to the URL with the generated predictions on completion or the error message on failure.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**notify:** `typing.Optional[bool]` — Whether to send an email notification to the user upon job completion/failure.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.expression_measurement.batch.<a href="src/hume/expression_measurement/batch/client.py">get_job_details</a>(...)</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get the request details and state of a given job.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```python
-from hume import HumeClient
-
-client = HumeClient(
-    api_key="YOUR_API_KEY",
-)
-client.expression_measurement.batch.get_job_details(
-    id="job_id",
-)
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `str` — The unique identifier for the job.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.expression_measurement.batch.<a href="src/hume/expression_measurement/batch/client.py">get_job_predictions</a>(...)</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get the JSON predictions of a completed inference job.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```python
-from hume import HumeClient
-
-client = HumeClient(
-    api_key="YOUR_API_KEY",
-)
-client.expression_measurement.batch.get_job_predictions(
-    id="job_id",
-)
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `str` — The unique identifier for the job.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.expression_measurement.batch.<a href="src/hume/expression_measurement/batch/client.py">start_inference_job_from_local_file</a>(...)</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Start a new batch inference job.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```python
-from hume import HumeClient
-
-client = HumeClient(
-    api_key="YOUR_API_KEY",
-)
-client.expression_measurement.batch.start_inference_job_from_local_file()
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**file:** `from __future__ import annotations
-
-typing.List[core.File]` — See core.File for more documentation
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**json:** `typing.Optional[InferenceBaseRequest]` — Stringified JSON object containing the inference job configuration.
+**name:** `str` — Name of the voice to delete
     
 </dd>
 </dl>
@@ -1312,9 +1083,14 @@ from hume import HumeClient
 client = HumeClient(
     api_key="YOUR_API_KEY",
 )
-client.empathic_voice.tools.list_tool_versions(
+response = client.empathic_voice.tools.list_tool_versions(
     id="00183a3f-79ba-413d-9f3b-609864268bea",
 )
+for item in response:
+    yield item
+# alternatively, you can paginate page-by-page
+for page in response.iter_pages():
+    yield page
 
 ```
 </dd>
@@ -2781,7 +2557,12 @@ from hume import HumeClient
 client = HumeClient(
     api_key="YOUR_API_KEY",
 )
-client.empathic_voice.custom_voices.list_custom_voices()
+response = client.empathic_voice.custom_voices.list_custom_voices()
+for item in response:
+    yield item
+# alternatively, you can paginate page-by-page
+for page in response.iter_pages():
+    yield page
 
 ```
 </dd>
@@ -3296,10 +3077,15 @@ from hume import HumeClient
 client = HumeClient(
     api_key="YOUR_API_KEY",
 )
-client.empathic_voice.configs.list_configs(
+response = client.empathic_voice.configs.list_configs(
     page_number=0,
     page_size=1,
 )
+for item in response:
+    yield item
+# alternatively, you can paginate page-by-page
+for page in response.iter_pages():
+    yield page
 
 ```
 </dd>
@@ -3421,7 +3207,7 @@ client.empathic_voice.configs.create_config(
     ),
     language_model=PostedLanguageModel(
         model_provider="ANTHROPIC",
-        model_resource="claude-3-5-sonnet-20240620",
+        model_resource="claude-3-7-sonnet-latest",
         temperature=1.0,
     ),
     event_messages=PostedEventMessageSpecs(
@@ -3604,9 +3390,14 @@ from hume import HumeClient
 client = HumeClient(
     api_key="YOUR_API_KEY",
 )
-client.empathic_voice.configs.list_config_versions(
+response = client.empathic_voice.configs.list_config_versions(
     id="1b60e1a0-cc59-424a-8d2c-189d354db3f3",
 )
+for item in response:
+    yield item
+# alternatively, you can paginate page-by-page
+for page in response.iter_pages():
+    yield page
 
 ```
 </dd>
@@ -3730,7 +3521,7 @@ client.empathic_voice.configs.create_config_version(
     ),
     language_model=PostedLanguageModel(
         model_provider="ANTHROPIC",
-        model_resource="claude-3-5-sonnet-20240620",
+        model_resource="claude-3-7-sonnet-latest",
         temperature=1.0,
     ),
     ellm_model=PostedEllmModel(
@@ -4628,12 +4419,17 @@ from hume import HumeClient
 client = HumeClient(
     api_key="YOUR_API_KEY",
 )
-client.empathic_voice.chat_groups.list_chat_groups(
+response = client.empathic_voice.chat_groups.list_chat_groups(
     page_number=0,
     page_size=1,
     ascending_order=True,
     config_id="1b60e1a0-cc59-424a-8d2c-189d354db3f3",
 )
+for item in response:
+    yield item
+# alternatively, you can paginate page-by-page
+for page in response.iter_pages():
+    yield page
 
 ```
 </dd>
@@ -4842,12 +4638,17 @@ from hume import HumeClient
 client = HumeClient(
     api_key="YOUR_API_KEY",
 )
-client.empathic_voice.chat_groups.list_chat_group_events(
+response = client.empathic_voice.chat_groups.list_chat_group_events(
     id="697056f0-6c7e-487d-9bd8-9c19df79f05f",
     page_number=0,
     page_size=3,
     ascending_order=True,
 )
+for item in response:
+    yield item
+# alternatively, you can paginate page-by-page
+for page in response.iter_pages():
+    yield page
 
 ```
 </dd>
@@ -5001,6 +4802,480 @@ This parameter uses zero-based indexing. For example, setting `page_number` to 0
 <dd>
 
 **ascending_order:** `typing.Optional[bool]` — Specifies the sorting order of the results based on their creation date. Set to true for ascending order (chronological, with the oldest records first) and false for descending order (reverse-chronological, with the newest records first). Defaults to true.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## ExpressionMeasurement Batch
+<details><summary><code>client.expression_measurement.batch.<a href="src/hume/expression_measurement/batch/client.py">list_jobs</a>(...)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sort and filter jobs.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from hume import HumeClient
+
+client = HumeClient(
+    api_key="YOUR_API_KEY",
+)
+client.expression_measurement.batch.list_jobs()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**limit:** `typing.Optional[int]` — The maximum number of jobs to include in the response.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `typing.Optional[typing.Union[Status, typing.Sequence[Status]]]` 
+
+Include only jobs of this status in the response. There are four possible statuses:
+
+- `QUEUED`: The job has been received and is waiting to be processed.
+
+- `IN_PROGRESS`: The job is currently being processed. 
+
+- `COMPLETED`: The job has finished processing.
+
+- `FAILED`: The job encountered an error and could not be completed successfully.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**when:** `typing.Optional[When]` — Specify whether to include jobs created before or after a given `timestamp_ms`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**timestamp_ms:** `typing.Optional[int]` 
+
+Provide a timestamp in milliseconds to filter jobs.
+
+ When combined with the `when` parameter, you can filter jobs before or after the given timestamp. Defaults to the current Unix timestamp if one is not provided.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort_by:** `typing.Optional[SortBy]` 
+
+Specify which timestamp to sort the jobs by.
+
+- `created`: Sort jobs by the time of creation, indicated by `created_timestamp_ms`.
+
+- `started`: Sort jobs by the time processing started, indicated by `started_timestamp_ms`.
+
+- `ended`: Sort jobs by the time processing ended, indicated by `ended_timestamp_ms`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**direction:** `typing.Optional[Direction]` 
+
+Specify the order in which to sort the jobs. Defaults to descending order.
+
+- `asc`: Sort in ascending order (chronological, with the oldest records first).
+
+- `desc`: Sort in descending order (reverse-chronological, with the newest records first).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.expression_measurement.batch.<a href="src/hume/expression_measurement/batch/client.py">start_inference_job</a>(...)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Start a new measurement inference job.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from hume import HumeClient
+
+client = HumeClient(
+    api_key="YOUR_API_KEY",
+)
+client.expression_measurement.batch.start_inference_job(
+    urls=["https://hume-tutorials.s3.amazonaws.com/faces.zip"],
+    notify=True,
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**models:** `typing.Optional[Models]` 
+
+Specify the models to use for inference.
+
+If this field is not explicitly set, then all models will run by default.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**transcription:** `typing.Optional[Transcription]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**urls:** `typing.Optional[typing.Sequence[str]]` 
+
+URLs to the media files to be processed. Each must be a valid public URL to a media file (see recommended input filetypes) or an archive (`.zip`, `.tar.gz`, `.tar.bz2`, `.tar.xz`) of media files.
+
+If you wish to supply more than 100 URLs, consider providing them as an archive (`.zip`, `.tar.gz`, `.tar.bz2`, `.tar.xz`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**text:** `typing.Optional[typing.Sequence[str]]` — Text supplied directly to our Emotional Language and NER models for analysis.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**callback_url:** `typing.Optional[str]` — If provided, a `POST` request will be made to the URL with the generated predictions on completion or the error message on failure.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notify:** `typing.Optional[bool]` — Whether to send an email notification to the user upon job completion/failure.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.expression_measurement.batch.<a href="src/hume/expression_measurement/batch/client.py">get_job_details</a>(...)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get the request details and state of a given job.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from hume import HumeClient
+
+client = HumeClient(
+    api_key="YOUR_API_KEY",
+)
+client.expression_measurement.batch.get_job_details(
+    id="job_id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` — The unique identifier for the job.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.expression_measurement.batch.<a href="src/hume/expression_measurement/batch/client.py">get_job_predictions</a>(...)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get the JSON predictions of a completed inference job.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from hume import HumeClient
+
+client = HumeClient(
+    api_key="YOUR_API_KEY",
+)
+client.expression_measurement.batch.get_job_predictions(
+    id="job_id",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `str` — The unique identifier for the job.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.expression_measurement.batch.<a href="src/hume/expression_measurement/batch/client.py">start_inference_job_from_local_file</a>(...)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Start a new batch inference job.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from hume import HumeClient
+
+client = HumeClient(
+    api_key="YOUR_API_KEY",
+)
+client.expression_measurement.batch.start_inference_job_from_local_file()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**file:** `from __future__ import annotations
+
+typing.List[core.File]` — See core.File for more documentation
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**json:** `typing.Optional[InferenceBaseRequest]` — Stringified JSON object containing the inference job configuration.
     
 </dd>
 </dl>

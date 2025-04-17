@@ -1,9 +1,24 @@
 channel:
-  path: /v0/evi/chat
+  path: /chat
   url: prod
   auth: false
   docs: Chat with Empathic Voice Interface (EVI)
   query-parameters:
+    access_token:
+      type: optional<string>
+      default: ''
+      docs: >-
+        Access token used for authenticating the client. If not provided, an
+        `api_key` must be provided to authenticate.
+
+
+        The access token is generated using both an API key and a Secret key,
+        which provides an additional layer of security compared to using just an
+        API key.
+
+
+        For more details, refer to the [Authentication Strategies
+        Guide](/docs/introduction/api-key#authentication-strategies).
     config_id:
       type: optional<string>
       docs: >-
@@ -87,21 +102,6 @@ channel:
         field on a
         [UserMessage](/reference/empathic-voice-interface-evi/chat/chat#receive.User%20Message.type)
         denotes whether the message is "interim" or "final."
-    access_token:
-      type: optional<string>
-      default: ''
-      docs: >-
-        Access token used for authenticating the client. If not provided, an
-        `api_key` must be provided to authenticate.
-
-
-        The access token is generated using both an API key and a Secret key,
-        which provides an additional layer of security compared to using just an
-        API key.
-
-
-        For more details, refer to the [Authentication Strategies
-        Guide](/docs/introduction/api-key#authentication-strategies).
     api_key:
       type: optional<string>
       default: ''
@@ -113,24 +113,37 @@ channel:
         For more details, refer to the [Authentication Strategies
         Guide](/docs/introduction/api-key#authentication-strategies).
   messages:
-    subscribe:
-      origin: server
-      body: SubscribeEvent
     publish:
       origin: client
       body: PublishEvent
+    subscribe:
+      origin: server
+      body: SubscribeEvent
   examples:
     - messages:
         - type: publish
           body:
-            type: audio_input
             data: data
+            type: audio_input
         - type: subscribe
           body:
             type: assistant_end
 imports:
   root: __package__.yml
 types:
+  PublishEvent:
+    discriminated: false
+    union:
+      - type: root.AudioInput
+      - type: root.SessionSettings
+      - type: root.UserInput
+      - type: root.AssistantInput
+      - type: root.ToolResponseMessage
+      - type: root.ToolErrorMessage
+      - type: root.PauseAssistantMessage
+      - type: root.ResumeAssistantMessage
+    source:
+      openapi: evi-asyncapi.json
   SubscribeEvent:
     discriminated: false
     union:
@@ -145,17 +158,4 @@ types:
       - type: root.ToolResponseMessage
       - type: root.ToolErrorMessage
     source:
-      openapi: assistant-asyncapi.json
-  PublishEvent:
-    discriminated: false
-    union:
-      - type: root.AudioInput
-      - type: root.SessionSettings
-      - type: root.UserInput
-      - type: root.AssistantInput
-      - type: root.ToolResponseMessage
-      - type: root.ToolErrorMessage
-      - type: root.PauseAssistantMessage
-      - type: root.ResumeAssistantMessage
-    source:
-      openapi: assistant-asyncapi.json
+      openapi: evi-asyncapi.json

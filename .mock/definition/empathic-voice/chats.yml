@@ -13,7 +13,7 @@ service:
         offset: $request.page_number
         results: $response.chats_page
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       display-name: List chats
       request:
         name: ChatsListChatsRequest
@@ -89,7 +89,7 @@ service:
         offset: $request.page_number
         results: $response.events_page
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       path-parameters:
         id:
           type: string
@@ -475,7 +475,7 @@ service:
         guide on audio reconstruction
         [here](/docs/empathic-voice-interface-evi/faq#can-i-access-the-audio-of-previous-conversations-with-evi).
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       path-parameters:
         id:
           type: string
@@ -501,4 +501,4 @@ service:
               signed_audio_url: https://storage.googleapis.com/...etc.
               signed_url_expiration_timestamp_millis: 1730232816964
   source:
-    openapi: stenographer-openapi.json
+    openapi: evi-openapi.json

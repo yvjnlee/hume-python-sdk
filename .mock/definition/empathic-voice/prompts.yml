@@ -19,7 +19,7 @@ service:
         offset: $request.page_number
         results: $response.prompts_page
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       display-name: List prompts
       request:
         name: PromptsListPromptsRequest
@@ -110,7 +110,7 @@ service:
         guide](/docs/empathic-voice-interface-evi/guides/phone-calling) for tips
         on crafting your system prompt.
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       display-name: Create prompt
       request:
         name: PostedPrompt
@@ -183,7 +183,7 @@ service:
         guide](/docs/empathic-voice-interface-evi/guides/phone-calling) for tips
         on crafting your system prompt.
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       path-parameters:
         id:
           type: string
@@ -260,7 +260,7 @@ service:
         guide](/docs/empathic-voice-interface-evi/guides/phone-calling) for tips
         on crafting your system prompt.
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       path-parameters:
         id:
           type: string
@@ -337,7 +337,7 @@ service:
         guide](/docs/empathic-voice-interface-evi/guides/phone-calling) for tips
         on crafting your system prompt.
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       path-parameters:
         id:
           type: string
@@ -360,7 +360,7 @@ service:
         guide](/docs/empathic-voice-interface-evi/guides/phone-calling) for tips
         on crafting your system prompt.
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       path-parameters:
         id:
           type: string
@@ -396,7 +396,7 @@ service:
         guide](/docs/empathic-voice-interface-evi/guides/phone-calling) for tips
         on crafting your system prompt.
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       path-parameters:
         id:
           type: string
@@ -455,7 +455,7 @@ service:
         guide](/docs/empathic-voice-interface-evi/guides/phone-calling) for tips
         on crafting your system prompt.
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       path-parameters:
         id:
           type: string
@@ -494,7 +494,7 @@ service:
         guide](/docs/empathic-voice-interface-evi/guides/phone-calling) for tips
         on crafting your system prompt.
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       path-parameters:
         id:
           type: string
@@ -552,4 +552,4 @@ service:
                 conditions, and any weather alerts. Include helpful tips if
                 severe weather is expected.</role>
   source:
-    openapi: stenographer-openapi.json
+    openapi: evi-openapi.json

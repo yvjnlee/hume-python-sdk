@@ -15,8 +15,11 @@ service:
         Refer to our [voices
         guide](/docs/empathic-voice-interface-evi/configuration/voices) for
         details on creating a custom voice.
+      pagination:
+        offset: $request.page_number
+        results: $response.custom_voices_page
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       display-name: List custom voices
       request:
         name: CustomVoicesListCustomVoicesRequest
@@ -79,7 +82,7 @@ service:
         guide](/docs/empathic-voice-interface-evi/configuration/voices) for
         details on creating a custom voice.
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       display-name: Create custom voice
       request:
         body: root.PostedCustomVoice
@@ -127,7 +130,7 @@ service:
         guide](/docs/empathic-voice-interface-evi/configuration/voices) for
         details on creating a custom voice.
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       path-parameters:
         id:
           type: string
@@ -175,7 +178,7 @@ service:
         guide](/docs/empathic-voice-interface-evi/configuration/voices) for
         details on creating a custom voice.
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       path-parameters:
         id:
           type: string
@@ -229,7 +232,7 @@ service:
         guide](/docs/empathic-voice-interface-evi/configuration/voices) for
         details on creating a custom voice.
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       path-parameters:
         id:
           type: string
@@ -252,7 +255,7 @@ service:
         guide](/docs/empathic-voice-interface-evi/configuration/voices) for
         details on creating a custom voice.
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       path-parameters:
         id:
           type: string
@@ -276,4 +279,4 @@ service:
       errors:
         - root.BadRequestError
   source:
-    openapi: stenographer-openapi.json
+    openapi: evi-openapi.json

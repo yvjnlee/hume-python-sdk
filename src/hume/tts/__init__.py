@@ -3,6 +3,7 @@
 from .types import (
     AudioEncoding,
     AudioFormatType,
+    ErrorResponse,
     Format,
     FormatMp3,
     FormatPcm,
@@ -17,19 +18,23 @@ from .types import (
     PostedUtteranceVoiceWithId,
     PostedUtteranceVoiceWithName,
     ReturnGeneration,
+    ReturnPagedVoices,
     ReturnTts,
     ReturnVoice,
     Snippet,
+    SnippetAudioChunk,
     ValidationError,
     ValidationErrorLocItem,
     VoiceProvider,
 )
-from .errors import UnprocessableEntityError
+from .errors import BadRequestError, UnprocessableEntityError
 from . import voices
 
 __all__ = [
     "AudioEncoding",
     "AudioFormatType",
+    "BadRequestError",
+    "ErrorResponse",
     "Format",
     "FormatMp3",
     "FormatPcm",
@@ -44,9 +49,11 @@ __all__ = [
     "PostedUtteranceVoiceWithId",
     "PostedUtteranceVoiceWithName",
     "ReturnGeneration",
+    "ReturnPagedVoices",
     "ReturnTts",
     "ReturnVoice",
     "Snippet",
+    "SnippetAudioChunk",
     "UnprocessableEntityError",
     "ValidationError",
     "ValidationErrorLocItem",

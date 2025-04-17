@@ -20,7 +20,7 @@ service:
         offset: $request.page_number
         results: $response.tools_page
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       display-name: List tools
       request:
         name: ToolsListToolsRequest
@@ -120,7 +120,7 @@ service:
         guide for comprehensive instructions on defining and integrating tools
         into EVI.
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       display-name: Create tool
       request:
         name: PostedUserDefinedTool
@@ -210,8 +210,11 @@ service:
         use](/docs/empathic-voice-interface-evi/features/tool-use#function-calling)
         guide for comprehensive instructions on defining and integrating tools
         into EVI.
+      pagination:
+        offset: $request.page_number
+        results: $response.tools_page
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       path-parameters:
         id:
           type: string
@@ -294,7 +297,7 @@ service:
         guide for comprehensive instructions on defining and integrating tools
         into EVI.
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       path-parameters:
         id:
           type: string
@@ -387,7 +390,7 @@ service:
         guide for comprehensive instructions on defining and integrating tools
         into EVI.
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       path-parameters:
         id:
           type: string
@@ -411,7 +414,7 @@ service:
         guide for comprehensive instructions on defining and integrating tools
         into EVI.
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       path-parameters:
         id:
           type: string
@@ -447,7 +450,7 @@ service:
         guide for comprehensive instructions on defining and integrating tools
         into EVI.
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       path-parameters:
         id:
           type: string
@@ -511,7 +514,7 @@ service:
         guide for comprehensive instructions on defining and integrating tools
         into EVI.
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       path-parameters:
         id:
           type: string
@@ -550,7 +553,7 @@ service:
         guide for comprehensive instructions on defining and integrating tools
         into EVI.
       source:
-        openapi: stenographer-openapi.json
+        openapi: evi-openapi.json
       path-parameters:
         id:
           type: string
@@ -616,4 +619,4 @@ service:
                 temperature unit to use. Infer this from the users location." }
                 }, "required": ["location", "format"] }
   source:
-    openapi: stenographer-openapi.json
+    openapi: evi-openapi.json

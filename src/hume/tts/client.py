@@ -14,7 +14,7 @@ from .errors.unprocessable_entity_error import UnprocessableEntityError
 from .types.http_validation_error import HttpValidationError
 from json.decoder import JSONDecodeError
 from ..core.api_error import ApiError
-from .types.snippet import Snippet
+from .types.snippet_audio_chunk import SnippetAudioChunk
 import json
 from ..core.client_wrapper import AsyncClientWrapper
 from .voices.client import AsyncVoicesClient
@@ -36,6 +36,7 @@ class TtsClient:
         format: typing.Optional[Format] = OMIT,
         num_generations: typing.Optional[int] = OMIT,
         split_utterances: typing.Optional[bool] = OMIT,
+        instant_mode: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ReturnTts:
         """
@@ -46,7 +47,9 @@ class TtsClient:
         Parameters
         ----------
         utterances : typing.Sequence[PostedUtterance]
-            Utterances to be converted to speech output.
+            A list of **Utterances** to be converted to speech output.
+
+            An **Utterance** is a unit of  input for [Octave](/docs/text-to-speech-tts/overview), and includes input `text`, an  optional `description` to serve as the prompt for how the speech should be delivered, an optional `voice` specification, and additional controls to guide delivery for `speed` and `trailing_silence`.
 
         context : typing.Optional[PostedContext]
             Utterances to use as context for generating consistent speech style and prosody across multiple requests. These will not be converted to speech output.
@@ -65,6 +68,12 @@ class TtsClient:
             - When **disabled**  (`false`), the response maintains a strict one-to-one mapping between input utterances and output snippets.
 
             This setting affects how the `snippets` array is structured in the response, which may be important  for applications that need to track the relationship between input text and generated audio segments. When  setting to `false`, avoid including utterances with long `text`, as this can result in distorted output.
+
+        instant_mode : typing.Optional[bool]
+            Enables ultra-low latency streaming, significantly reducing the time until the first audio chunk is received. Recommended for real-time applications requiring immediate audio playback. For further details, see our documentation on [instant mode](/docs/text-to-speech-tts/overview#ultra-low-latency-streaming-instant-mode).
+            - Dynamic voice generation is not supported with this mode; a predefined  [voice](/reference/text-to-speech-tts/synthesize-json-streaming#request.body.utterances.voice)  must be specified in your request.
+            - This mode is only supported for streaming endpoints (e.g.,  [/v0/tts/stream/json](/reference/text-to-speech-tts/synthesize-json-streaming), [/v0/tts/stream/file](/reference/text-to-speech-tts/synthesize-file-streaming)).
+            - With `instant_mode` enabled, **requests incur a 10% higher cost** due to increased compute and resource requirements.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -114,6 +123,7 @@ class TtsClient:
                 "utterances": convert_and_respect_annotation_metadata(
                     object_=utterances, annotation=typing.Sequence[PostedUtterance], direction="write"
                 ),
+                "instant_mode": instant_mode,
             },
             request_options=request_options,
             omit=OMIT,
@@ -150,6 +160,7 @@ class TtsClient:
         format: typing.Optional[Format] = OMIT,
         num_generations: typing.Optional[int] = OMIT,
         split_utterances: typing.Optional[bool] = OMIT,
+        instant_mode: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> typing.Iterator[bytes]:
         """
@@ -160,7 +171,9 @@ class TtsClient:
         Parameters
         ----------
         utterances : typing.Sequence[PostedUtterance]
-            Utterances to be converted to speech output.
+            A list of **Utterances** to be converted to speech output.
+
+            An **Utterance** is a unit of  input for [Octave](/docs/text-to-speech-tts/overview), and includes input `text`, an  optional `description` to serve as the prompt for how the speech should be delivered, an optional `voice` specification, and additional controls to guide delivery for `speed` and `trailing_silence`.
 
         context : typing.Optional[PostedContext]
             Utterances to use as context for generating consistent speech style and prosody across multiple requests. These will not be converted to speech output.
@@ -179,6 +192,12 @@ class TtsClient:
             - When **disabled**  (`false`), the response maintains a strict one-to-one mapping between input utterances and output snippets.
 
             This setting affects how the `snippets` array is structured in the response, which may be important  for applications that need to track the relationship between input text and generated audio segments. When  setting to `false`, avoid including utterances with long `text`, as this can result in distorted output.
+
+        instant_mode : typing.Optional[bool]
+            Enables ultra-low latency streaming, significantly reducing the time until the first audio chunk is received. Recommended for real-time applications requiring immediate audio playback. For further details, see our documentation on [instant mode](/docs/text-to-speech-tts/overview#ultra-low-latency-streaming-instant-mode).
+            - Dynamic voice generation is not supported with this mode; a predefined  [voice](/reference/text-to-speech-tts/synthesize-json-streaming#request.body.utterances.voice)  must be specified in your request.
+            - This mode is only supported for streaming endpoints (e.g.,  [/v0/tts/stream/json](/reference/text-to-speech-tts/synthesize-json-streaming), [/v0/tts/stream/file](/reference/text-to-speech-tts/synthesize-file-streaming)).
+            - With `instant_mode` enabled, **requests incur a 10% higher cost** due to increased compute and resource requirements.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -223,6 +242,7 @@ class TtsClient:
                 "utterances": convert_and_respect_annotation_metadata(
                     object_=utterances, annotation=typing.Sequence[PostedUtterance], direction="write"
                 ),
+                "instant_mode": instant_mode,
             },
             request_options=request_options,
             omit=OMIT,
@@ -256,6 +276,7 @@ class TtsClient:
         format: typing.Optional[Format] = OMIT,
         num_generations: typing.Optional[int] = OMIT,
         split_utterances: typing.Optional[bool] = OMIT,
+        instant_mode: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> typing.Iterator[bytes]:
         """
@@ -264,7 +285,9 @@ class TtsClient:
         Parameters
         ----------
         utterances : typing.Sequence[PostedUtterance]
-            Utterances to be converted to speech output.
+            A list of **Utterances** to be converted to speech output.
+
+            An **Utterance** is a unit of  input for [Octave](/docs/text-to-speech-tts/overview), and includes input `text`, an  optional `description` to serve as the prompt for how the speech should be delivered, an optional `voice` specification, and additional controls to guide delivery for `speed` and `trailing_silence`.
 
         context : typing.Optional[PostedContext]
             Utterances to use as context for generating consistent speech style and prosody across multiple requests. These will not be converted to speech output.
@@ -283,6 +306,12 @@ class TtsClient:
             - When **disabled**  (`false`), the response maintains a strict one-to-one mapping between input utterances and output snippets.
 
             This setting affects how the `snippets` array is structured in the response, which may be important  for applications that need to track the relationship between input text and generated audio segments. When  setting to `false`, avoid including utterances with long `text`, as this can result in distorted output.
+
+        instant_mode : typing.Optional[bool]
+            Enables ultra-low latency streaming, significantly reducing the time until the first audio chunk is received. Recommended for real-time applications requiring immediate audio playback. For further details, see our documentation on [instant mode](/docs/text-to-speech-tts/overview#ultra-low-latency-streaming-instant-mode).
+            - Dynamic voice generation is not supported with this mode; a predefined  [voice](/reference/text-to-speech-tts/synthesize-json-streaming#request.body.utterances.voice)  must be specified in your request.
+            - This mode is only supported for streaming endpoints (e.g.,  [/v0/tts/stream/json](/reference/text-to-speech-tts/synthesize-json-streaming), [/v0/tts/stream/file](/reference/text-to-speech-tts/synthesize-file-streaming)).
+            - With `instant_mode` enabled, **requests incur a 10% higher cost** due to increased compute and resource requirements.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -327,6 +356,7 @@ class TtsClient:
                 "utterances": convert_and_respect_annotation_metadata(
                     object_=utterances, annotation=typing.Sequence[PostedUtterance], direction="write"
                 ),
+                "instant_mode": instant_mode,
             },
             request_options=request_options,
             omit=OMIT,
@@ -360,8 +390,9 @@ class TtsClient:
         format: typing.Optional[Format] = OMIT,
         num_generations: typing.Optional[int] = OMIT,
         split_utterances: typing.Optional[bool] = OMIT,
+        instant_mode: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> typing.Iterator[Snippet]:
+    ) -> typing.Iterator[SnippetAudioChunk]:
         """
         Streams synthesized speech using the specified voice. If no voice is provided,  a novel voice will be generated dynamically. Optionally, additional context can be included to influence the  speech's style and prosody.
 
@@ -370,7 +401,9 @@ class TtsClient:
         Parameters
         ----------
         utterances : typing.Sequence[PostedUtterance]
-            Utterances to be converted to speech output.
+            A list of **Utterances** to be converted to speech output.
+
+            An **Utterance** is a unit of  input for [Octave](/docs/text-to-speech-tts/overview), and includes input `text`, an  optional `description` to serve as the prompt for how the speech should be delivered, an optional `voice` specification, and additional controls to guide delivery for `speed` and `trailing_silence`.
 
         context : typing.Optional[PostedContext]
             Utterances to use as context for generating consistent speech style and prosody across multiple requests. These will not be converted to speech output.
@@ -390,12 +423,18 @@ class TtsClient:
 
             This setting affects how the `snippets` array is structured in the response, which may be important  for applications that need to track the relationship between input text and generated audio segments. When  setting to `false`, avoid including utterances with long `text`, as this can result in distorted output.
 
+        instant_mode : typing.Optional[bool]
+            Enables ultra-low latency streaming, significantly reducing the time until the first audio chunk is received. Recommended for real-time applications requiring immediate audio playback. For further details, see our documentation on [instant mode](/docs/text-to-speech-tts/overview#ultra-low-latency-streaming-instant-mode).
+            - Dynamic voice generation is not supported with this mode; a predefined  [voice](/reference/text-to-speech-tts/synthesize-json-streaming#request.body.utterances.voice)  must be specified in your request.
+            - This mode is only supported for streaming endpoints (e.g.,  [/v0/tts/stream/json](/reference/text-to-speech-tts/synthesize-json-streaming), [/v0/tts/stream/file](/reference/text-to-speech-tts/synthesize-file-streaming)).
+            - With `instant_mode` enabled, **requests incur a 10% higher cost** due to increased compute and resource requirements.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Yields
         ------
-        typing.Iterator[Snippet]
+        typing.Iterator[SnippetAudioChunk]
             Successful Response
 
         Examples
@@ -439,6 +478,7 @@ class TtsClient:
                 "utterances": convert_and_respect_annotation_metadata(
                     object_=utterances, annotation=typing.Sequence[PostedUtterance], direction="write"
                 ),
+                "instant_mode": instant_mode,
             },
             request_options=request_options,
             omit=OMIT,
@@ -450,9 +490,9 @@ class TtsClient:
                             if len(_text) == 0:
                                 continue
                             yield typing.cast(
-                                Snippet,
+                                SnippetAudioChunk,
                                 parse_obj_as(
-                                    type_=Snippet,  # type: ignore
+                                    type_=SnippetAudioChunk,  # type: ignore
                                     object_=json.loads(_text),
                                 ),
                             )
@@ -489,6 +529,7 @@ class AsyncTtsClient:
         format: typing.Optional[Format] = OMIT,
         num_generations: typing.Optional[int] = OMIT,
         split_utterances: typing.Optional[bool] = OMIT,
+        instant_mode: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ReturnTts:
         """
@@ -499,7 +540,9 @@ class AsyncTtsClient:
         Parameters
         ----------
         utterances : typing.Sequence[PostedUtterance]
-            Utterances to be converted to speech output.
+            A list of **Utterances** to be converted to speech output.
+
+            An **Utterance** is a unit of  input for [Octave](/docs/text-to-speech-tts/overview), and includes input `text`, an  optional `description` to serve as the prompt for how the speech should be delivered, an optional `voice` specification, and additional controls to guide delivery for `speed` and `trailing_silence`.
 
         context : typing.Optional[PostedContext]
             Utterances to use as context for generating consistent speech style and prosody across multiple requests. These will not be converted to speech output.
@@ -518,6 +561,12 @@ class AsyncTtsClient:
             - When **disabled**  (`false`), the response maintains a strict one-to-one mapping between input utterances and output snippets.
 
             This setting affects how the `snippets` array is structured in the response, which may be important  for applications that need to track the relationship between input text and generated audio segments. When  setting to `false`, avoid including utterances with long `text`, as this can result in distorted output.
+
+        instant_mode : typing.Optional[bool]
+            Enables ultra-low latency streaming, significantly reducing the time until the first audio chunk is received. Recommended for real-time applications requiring immediate audio playback. For further details, see our documentation on [instant mode](/docs/text-to-speech-tts/overview#ultra-low-latency-streaming-instant-mode).
+            - Dynamic voice generation is not supported with this mode; a predefined  [voice](/reference/text-to-speech-tts/synthesize-json-streaming#request.body.utterances.voice)  must be specified in your request.
+            - This mode is only supported for streaming endpoints (e.g.,  [/v0/tts/stream/json](/reference/text-to-speech-tts/synthesize-json-streaming), [/v0/tts/stream/file](/reference/text-to-speech-tts/synthesize-file-streaming)).
+            - With `instant_mode` enabled, **requests incur a 10% higher cost** due to increased compute and resource requirements.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -575,6 +624,7 @@ class AsyncTtsClient:
                 "utterances": convert_and_respect_annotation_metadata(
                     object_=utterances, annotation=typing.Sequence[PostedUtterance], direction="write"
                 ),
+                "instant_mode": instant_mode,
             },
             request_options=request_options,
             omit=OMIT,
@@ -611,6 +661,7 @@ class AsyncTtsClient:
         format: typing.Optional[Format] = OMIT,
         num_generations: typing.Optional[int] = OMIT,
         split_utterances: typing.Optional[bool] = OMIT,
+        instant_mode: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> typing.AsyncIterator[bytes]:
         """
@@ -621,7 +672,9 @@ class AsyncTtsClient:
         Parameters
         ----------
         utterances : typing.Sequence[PostedUtterance]
-            Utterances to be converted to speech output.
+            A list of **Utterances** to be converted to speech output.
+
+            An **Utterance** is a unit of  input for [Octave](/docs/text-to-speech-tts/overview), and includes input `text`, an  optional `description` to serve as the prompt for how the speech should be delivered, an optional `voice` specification, and additional controls to guide delivery for `speed` and `trailing_silence`.
 
         context : typing.Optional[PostedContext]
             Utterances to use as context for generating consistent speech style and prosody across multiple requests. These will not be converted to speech output.
@@ -640,6 +693,12 @@ class AsyncTtsClient:
             - When **disabled**  (`false`), the response maintains a strict one-to-one mapping between input utterances and output snippets.
 
             This setting affects how the `snippets` array is structured in the response, which may be important  for applications that need to track the relationship between input text and generated audio segments. When  setting to `false`, avoid including utterances with long `text`, as this can result in distorted output.
+
+        instant_mode : typing.Optional[bool]
+            Enables ultra-low latency streaming, significantly reducing the time until the first audio chunk is received. Recommended for real-time applications requiring immediate audio playback. For further details, see our documentation on [instant mode](/docs/text-to-speech-tts/overview#ultra-low-latency-streaming-instant-mode).
+            - Dynamic voice generation is not supported with this mode; a predefined  [voice](/reference/text-to-speech-tts/synthesize-json-streaming#request.body.utterances.voice)  must be specified in your request.
+            - This mode is only supported for streaming endpoints (e.g.,  [/v0/tts/stream/json](/reference/text-to-speech-tts/synthesize-json-streaming), [/v0/tts/stream/file](/reference/text-to-speech-tts/synthesize-file-streaming)).
+            - With `instant_mode` enabled, **requests incur a 10% higher cost** due to increased compute and resource requirements.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -692,6 +751,7 @@ class AsyncTtsClient:
                 "utterances": convert_and_respect_annotation_metadata(
                     object_=utterances, annotation=typing.Sequence[PostedUtterance], direction="write"
                 ),
+                "instant_mode": instant_mode,
             },
             request_options=request_options,
             omit=OMIT,
@@ -725,6 +785,7 @@ class AsyncTtsClient:
         format: typing.Optional[Format] = OMIT,
         num_generations: typing.Optional[int] = OMIT,
         split_utterances: typing.Optional[bool] = OMIT,
+        instant_mode: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> typing.AsyncIterator[bytes]:
         """
@@ -733,7 +794,9 @@ class AsyncTtsClient:
         Parameters
         ----------
         utterances : typing.Sequence[PostedUtterance]
-            Utterances to be converted to speech output.
+            A list of **Utterances** to be converted to speech output.
+
+            An **Utterance** is a unit of  input for [Octave](/docs/text-to-speech-tts/overview), and includes input `text`, an  optional `description` to serve as the prompt for how the speech should be delivered, an optional `voice` specification, and additional controls to guide delivery for `speed` and `trailing_silence`.
 
         context : typing.Optional[PostedContext]
             Utterances to use as context for generating consistent speech style and prosody across multiple requests. These will not be converted to speech output.
@@ -752,6 +815,12 @@ class AsyncTtsClient:
             - When **disabled**  (`false`), the response maintains a strict one-to-one mapping between input utterances and output snippets.
 
             This setting affects how the `snippets` array is structured in the response, which may be important  for applications that need to track the relationship between input text and generated audio segments. When  setting to `false`, avoid including utterances with long `text`, as this can result in distorted output.
+
+        instant_mode : typing.Optional[bool]
+            Enables ultra-low latency streaming, significantly reducing the time until the first audio chunk is received. Recommended for real-time applications requiring immediate audio playback. For further details, see our documentation on [instant mode](/docs/text-to-speech-tts/overview#ultra-low-latency-streaming-instant-mode).
+            - Dynamic voice generation is not supported with this mode; a predefined  [voice](/reference/text-to-speech-tts/synthesize-json-streaming#request.body.utterances.voice)  must be specified in your request.
+            - This mode is only supported for streaming endpoints (e.g.,  [/v0/tts/stream/json](/reference/text-to-speech-tts/synthesize-json-streaming), [/v0/tts/stream/file](/reference/text-to-speech-tts/synthesize-file-streaming)).
+            - With `instant_mode` enabled, **requests incur a 10% higher cost** due to increased compute and resource requirements.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -804,6 +873,7 @@ class AsyncTtsClient:
                 "utterances": convert_and_respect_annotation_metadata(
                     object_=utterances, annotation=typing.Sequence[PostedUtterance], direction="write"
                 ),
+                "instant_mode": instant_mode,
             },
             request_options=request_options,
             omit=OMIT,
@@ -837,8 +907,9 @@ class AsyncTtsClient:
         format: typing.Optional[Format] = OMIT,
         num_generations: typing.Optional[int] = OMIT,
         split_utterances: typing.Optional[bool] = OMIT,
+        instant_mode: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> typing.AsyncIterator[Snippet]:
+    ) -> typing.AsyncIterator[SnippetAudioChunk]:
         """
         Streams synthesized speech using the specified voice. If no voice is provided,  a novel voice will be generated dynamically. Optionally, additional context can be included to influence the  speech's style and prosody.
 
@@ -847,7 +918,9 @@ class AsyncTtsClient:
         Parameters
         ----------
         utterances : typing.Sequence[PostedUtterance]
-            Utterances to be converted to speech output.
+            A list of **Utterances** to be converted to speech output.
+
+            An **Utterance** is a unit of  input for [Octave](/docs/text-to-speech-tts/overview), and includes input `text`, an  optional `description` to serve as the prompt for how the speech should be delivered, an optional `voice` specification, and additional controls to guide delivery for `speed` and `trailing_silence`.
 
         context : typing.Optional[PostedContext]
             Utterances to use as context for generating consistent speech style and prosody across multiple requests. These will not be converted to speech output.
@@ -867,12 +940,18 @@ class AsyncTtsClient:
 
             This setting affects how the `snippets` array is structured in the response, which may be important  for applications that need to track the relationship between input text and generated audio segments. When  setting to `false`, avoid including utterances with long `text`, as this can result in distorted output.
 
+        instant_mode : typing.Optional[bool]
+            Enables ultra-low latency streaming, significantly reducing the time until the first audio chunk is received. Recommended for real-time applications requiring immediate audio playback. For further details, see our documentation on [instant mode](/docs/text-to-speech-tts/overview#ultra-low-latency-streaming-instant-mode).
+            - Dynamic voice generation is not supported with this mode; a predefined  [voice](/reference/text-to-speech-tts/synthesize-json-streaming#request.body.utterances.voice)  must be specified in your request.
+            - This mode is only supported for streaming endpoints (e.g.,  [/v0/tts/stream/json](/reference/text-to-speech-tts/synthesize-json-streaming), [/v0/tts/stream/file](/reference/text-to-speech-tts/synthesize-file-streaming)).
+            - With `instant_mode` enabled, **requests incur a 10% higher cost** due to increased compute and resource requirements.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Yields
         ------
-        typing.AsyncIterator[Snippet]
+        typing.AsyncIterator[SnippetAudioChunk]
             Successful Response
 
         Examples
@@ -924,6 +1003,7 @@ class AsyncTtsClient:
                 "utterances": convert_and_respect_annotation_metadata(
                     object_=utterances, annotation=typing.Sequence[PostedUtterance], direction="write"
                 ),
+                "instant_mode": instant_mode,
             },
             request_options=request_options,
             omit=OMIT,
@@ -935,9 +1015,9 @@ class AsyncTtsClient:
                             if len(_text) == 0:
                                 continue
                             yield typing.cast(
-                                Snippet,
+                                SnippetAudioChunk,
                                 parse_obj_as(
-                                    type_=Snippet,  # type: ignore
+                                    type_=SnippetAudioChunk,  # type: ignore
                                     object_=json.loads(_text),
                                 ),
                             )
